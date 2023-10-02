@@ -11,9 +11,31 @@ async function callApi(){
 async function pintar(){
     const data = await callApi()
     console.log(data)
-    const array = data.photos
+    const lista = data.photos
+    console.log(lista)
+    console.log(data.photos[0].img_src)
     let cards = ''
-    for (let i = 0; i < 20; i++) {
+
+    lista.forEach(element => {
+        console.log(element)
+        let template = 
+        `
+            <div class="tarjeta">
+                <p>${element.camera.full_name}</p>
+                <img src="${element.img_src}" alt="nasa api img">
+            </div>
+        `
+        cards += template
+    });
+
+    document.querySelector('.galeria').innerHTML = cards
+    
+}
+
+pintar()
+
+/*
+for (let i = 0; i < 500; i++) {
         let template = 
         `
             <div class="tarjeta">
@@ -23,9 +45,4 @@ async function pintar(){
         `
         cards += template
     }
-
-    document.querySelector('.galeria').innerHTML = cards
-    
-}
-
-pintar()
+*/
